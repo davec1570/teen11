@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Free Website</title>
+  <meta name="description" content="A clean, fast, mobile‑friendly landing page built with a single HTML file." />
+  <meta property="og:title" content="My Free Website" />
+  <meta property="og:description" content="A clean, fast, mobile‑friendly landing page built with a single HTML file." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1503264116251-35a269479413?q=80&w=1200&auto=format&fit=crop" />
+  <style>
+    :root { --bg:#0f172a; --card:#111827; --text:#e5e7eb; --muted:#94a3b8; --accent:#38bdf8; }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Helvetica,Arial,sans-serif}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    header{position:sticky;top:0;background:rgba(15,23,42,.7);backdrop-filter:saturate(180%) blur(6px);border-bottom:1px solid #1f2937}
+    .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .brand{font-weight:700;letter-spacing:.3px}
+    .btn{display:inline-block;background:var(--accent);color:#001827;padding:.7rem 1rem;border-radius:12px;font-weight:600}
+    .btn:hover{filter:brightness(.95)}
+    .hero{display:grid;grid-template-columns:1.2fr 1fr;gap:36px;align-items:center;min-height:72vh;padding:56px 0}
+    .hero h1{font-size:clamp(28px,5vw,54px);line-height:1.1;margin:.2em 0}
+    .hero p{color:var(--muted);font-size:1.05rem}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.06);border-radius:18px;padding:22px}
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .feature h3{margin:0 0 .3rem}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .footer{padding:40px 0;color:var(--muted);font-size:.95rem;border-top:1px solid #1f2937;margin-top:40px}
+    img.hero-img{width:100%;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+    @media (max-width:900px){.hero{grid-template-columns:1fr}.features{grid-template-columns:1fr}.grid-2{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <div class="brand">YourBrand</div>
+      <nav>
+        <a href="#features">Features</a>
+        &nbsp;&nbsp;•&nbsp;&nbsp;
+        <a href="#contact">Contact</a>
+        &nbsp;&nbsp;&nbsp;
+        <a class="btn" href="#cta">Get Started</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div>
+        <span class="card" style="display:inline-block;font-size:.85rem;color:var(--muted);">Fast • Free • No build tools</span>
+        <h1>Launch a beautiful site in minutes—free.</h1>
+        <p>This single‑file template is mobile‑friendly, accessible, and deploys to GitHub Pages, Cloudflare Pages, Netlify, or Vercel—at no cost. Replace the text, swap the image, and you’re live.</p>
+        <p id="cta"><a class="btn" href="#contact">Contact Me</a>&nbsp;&nbsp;<a href="https://github.com/new" target="_blank" rel="noopener">Deploy on GitHub Pages →</a></p>
+      </div>
+      <div>
+        <img class="hero-img" alt="abstract gradient city at night" src="https://images.unsplash.com/photo-1503264116251-35a269479413?q=80&w=1400&auto=format&fit=crop" />
+      </div>
+    </section>
+
+    <section id="features" class="grid-2" style="margin:16px 0 32px">
+      <div class="card">
+        <h2 style="margin-top:0">Why this template?</h2>
+        <p>It keeps things simple: just HTML + CSS. No Node build, no frameworks, nothing to install. Perfect for a personal landing page, resume, portfolio, small business, or event.</p>
+        <ul>
+          <li>Responsive layout & semantic HTML</li>
+          <li>Sticky nav and CTA</li>
+          <li>Open Graph tags for social sharing</li>
+          <li>Easy theming via <code>:root</code> CSS variables</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2 style="margin-top:0">Feature highlights</h2>
+        <div class="features">
+          <div class="feature"><h3>⚡ Fast</h3><p class="muted">Pure HTML/CSS—loads instantly.</p></div>
+          <div class="feature"><h3>📱 Mobile‑first</h3><p>Looks great on any device.</p></div>
+          <div class="feature"><h3>🆓 Free hosting</h3><p>GitHub, Cloudflare, Netlify, Vercel.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="card">
+      <h2 style="margin-top:0">Contact</h2>
+      <p>Swap this for your preferred contact method.</p>
+      <p><a class="btn" href="mailto:hello@example.com?subject=Hello!">Email me</a> &nbsp; or &nbsp; <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a></p>
+    </section>
+
+    <section class="footer">
+      <p>© <span id="year"></span> YourBrand. Built with ❤️ and hosted for free.</p>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
