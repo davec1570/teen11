@@ -1,99 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>My Free Website</title>
-  <meta name="description" content="A clean, fast, mobile‑friendly landing page built with a single HTML file." />
-  <meta property="og:title" content="My Free Website" />
-  <meta property="og:description" content="A clean, fast, mobile‑friendly landing page built with a single HTML file." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://images.unsplash.com/photo-1503264116251-35a269479413?q=80&w=1200&auto=format&fit=crop" />
+  <title>My Photo Gallery</title>
+  <meta name="description" content="A free, GitHub‑powered photo gallery where visitors can download originals (HEIC supported for download)." />
   <style>
-    :root { --bg:#0f172a; --card:#111827; --text:#e5e7eb; --muted:#94a3b8; --accent:#38bdf8; }
+    :root{--bg:#0b1220;--card:#101826;--text:#e6edf3;--muted:#9fb0c3;--accent:#4cc9f0}
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Helvetica,Arial,sans-serif}
+    body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial}
     a{color:var(--accent);text-decoration:none}
     a:hover{text-decoration:underline}
-    header{position:sticky;top:0;background:rgba(15,23,42,.7);backdrop-filter:saturate(180%) blur(6px);border-bottom:1px solid #1f2937}
-    .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+    header{position:sticky;top:0;z-index:10;background:rgba(11,18,32,.7);backdrop-filter:saturate(160%) blur(6px);border-bottom:1px solid #1f2a3a}
+    .wrap{max-width:1100px;margin:0 auto;padding:0 18px}
     .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
-    .brand{font-weight:700;letter-spacing:.3px}
-    .btn{display:inline-block;background:var(--accent);color:#001827;padding:.7rem 1rem;border-radius:12px;font-weight:600}
+    .brand{font-weight:700}
+    .config{font-size:.9rem;color:var(--muted)}
+    main{padding:18px 0 40px}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.015));border:1px solid rgba(255,255,255,.06);border-radius:14px;overflow:hidden}
+    figure{margin:0}
+    img{display:block;width:100%;height:210px;object-fit:cover;background:#0a0f19}
+    .meta{padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .meta small{color:var(--muted)}
+    .btn{display:inline-block;background:var(--accent);color:#062636;padding:.45rem .7rem;border-radius:10px;font-weight:600;white-space:nowrap}
     .btn:hover{filter:brightness(.95)}
-    .hero{display:grid;grid-template-columns:1.2fr 1fr;gap:36px;align-items:center;min-height:72vh;padding:56px 0}
-    .hero h1{font-size:clamp(28px,5vw,54px);line-height:1.1;margin:.2em 0}
-    .hero p{color:var(--muted);font-size:1.05rem}
-    .card{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.06);border-radius:18px;padding:22px}
-    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .feature h3{margin:0 0 .3rem}
-    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-    .footer{padding:40px 0;color:var(--muted);font-size:.95rem;border-top:1px solid #1f2937;margin-top:40px}
-    img.hero-img{width:100%;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.4)}
-    @media (max-width:900px){.hero{grid-template-columns:1fr}.features{grid-template-columns:1fr}.grid-2{grid-template-columns:1fr}}
+    .empty{padding:18px;border:1px dashed #2b3a51;border-radius:12px;color:var(--muted)}
+    .footer{color:var(--muted);margin-top:28px;border-top:1px solid #1f2a3a;padding-top:18px}
+    @media (max-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}}
+    @media (max-width:700px){.grid{grid-template-columns:repeat(2,1fr)}img{height:180px}}
+    @media (max-width:480px){.grid{grid-template-columns:1fr}img{height:220px}}
   </style>
 </head>
 <body>
   <header>
     <div class="wrap nav">
-      <div class="brand">YourBrand</div>
-      <nav>
-        <a href="#features">Features</a>
-        &nbsp;&nbsp;•&nbsp;&nbsp;
-        <a href="#contact">Contact</a>
-        &nbsp;&nbsp;&nbsp;
-        <a class="btn" href="#cta">Get Started</a>
-      </nav>
+      <div class="brand">📸 My Photo Gallery</div>
+      <div class="config" id="status">Loading photos…</div>
     </div>
   </header>
 
   <main class="wrap">
-    <section class="hero">
-      <div>
-        <span class="card" style="display:inline-block;font-size:.85rem;color:var(--muted);">Fast • Free • No build tools</span>
-        <h1>Launch a beautiful site in minutes—free.</h1>
-        <p>This single‑file template is mobile‑friendly, accessible, and deploys to GitHub Pages, Cloudflare Pages, Netlify, or Vercel—at no cost. Replace the text, swap the image, and you’re live.</p>
-        <p id="cta"><a class="btn" href="#contact">Contact Me</a>&nbsp;&nbsp;<a href="https://github.com/new" target="_blank" rel="noopener">Deploy on GitHub Pages →</a></p>
-      </div>
-      <div>
-        <img class="hero-img" alt="abstract gradient city at night" src="https://images.unsplash.com/photo-1503264116251-35a269479413?q=80&w=1400&auto=format&fit=crop" />
-      </div>
+    <section class="empty" id="help" style="display:none">
+      <strong>No photos yet.</strong> Create a folder in your repo (default: <code>photos/</code>) and drag images into it via the GitHub web UI. Supported: JPG, PNG, GIF, WEBP, BMP, HEIC. Commit and refresh this page.
     </section>
 
-    <section id="features" class="grid-2" style="margin:16px 0 32px">
-      <div class="card">
-        <h2 style="margin-top:0">Why this template?</h2>
-        <p>It keeps things simple: just HTML + CSS. No Node build, no frameworks, nothing to install. Perfect for a personal landing page, resume, portfolio, small business, or event.</p>
-        <ul>
-          <li>Responsive layout & semantic HTML</li>
-          <li>Sticky nav and CTA</li>
-          <li>Open Graph tags for social sharing</li>
-          <li>Easy theming via <code>:root</code> CSS variables</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h2 style="margin-top:0">Feature highlights</h2>
-        <div class="features">
-          <div class="feature"><h3>⚡ Fast</h3><p class="muted">Pure HTML/CSS—loads instantly.</p></div>
-          <div class="feature"><h3>📱 Mobile‑first</h3><p>Looks great on any device.</p></div>
-          <div class="feature"><h3>🆓 Free hosting</h3><p>GitHub, Cloudflare, Netlify, Vercel.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="card">
-      <h2 style="margin-top:0">Contact</h2>
-      <p>Swap this for your preferred contact method.</p>
-      <p><a class="btn" href="mailto:hello@example.com?subject=Hello!">Email me</a> &nbsp; or &nbsp; <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a></p>
-    </section>
+    <section class="grid" id="gallery" aria-live="polite"></section>
 
     <section class="footer">
-      <p>© <span id="year"></span> YourBrand. Built with ❤️ and hosted for free.</p>
+      <p>Tip: visitors can click <em>Download</em> under any image to save the original file. <br>
+      Note: HEIC files will download fine but may not preview in most browsers (except Safari).</p>
     </section>
   </main>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    // === Simple, free gallery powered by the public GitHub API ===
+    const CONFIG = {
+      owner: 'davec1570',     // <-- your GitHub username
+      repo:  'teen11',        // <-- your repo name (or yourname.github.io)
+      branch: 'main',         // 'main' or 'master'
+      folder: 'photos'        // folder inside the repo that holds images
+    };
+
+    // Supported extensions (added HEIC)
+    const exts = ['.jpg','.jpeg','.png','.gif','.webp','.bmp','.heic','.heif'];
+    const apiUrl = `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${CONFIG.folder}?ref=${CONFIG.branch}`;
+    const rawBase = `https://raw.githubusercontent.com/${CONFIG.owner}/${CONFIG.repo}/${CONFIG.branch}/${CONFIG.folder}`;
+
+    const statusEl = document.getElementById('status');
+    const gallery = document.getElementById('gallery');
+    const help = document.getElementById('help');
+
+    async function load(){
+      try{
+        const res = await fetch(apiUrl, { headers: { 'Accept': 'application/vnd.github+json' }});
+        if(!res.ok){
+          statusEl.textContent = `Error ${res.status}: cannot list ${CONFIG.folder}/`;
+          help.style.display = 'block';
+          return;
+        }
+        const items = await res.json();
+        const files = items.filter(x => x.type === 'file' && exts.some(e => x.name.toLowerCase().endsWith(e)));
+        if(files.length === 0){
+          statusEl.textContent = 'No photos found yet.';
+          help.style.display = 'block';
+          return;
+        }
+        statusEl.textContent = `${files.length} photo${files.length>1?'s':''}`;
+        files.sort((a,b)=> (b.size||0)-(a.size||0));
+        for(const f of files){
+          const raw = `${rawBase}/${encodeURIComponent(f.name)}`;
+          const card = document.createElement('article');
+          card.className='card';
+          if(f.name.toLowerCase().endsWith('.heic')||f.name.toLowerCase().endsWith('.heif')){
+            card.innerHTML = `
+              <figure style="display:flex;align-items:center;justify-content:center;height:210px;background:#0a0f19;color:var(--muted);font-size:.9rem">
+                HEIC file<br>(preview not supported)
+              </figure>
+              <div class="meta">
+                <small title="${f.name}">${f.name.replace(/\.[^.]+$/,'')}</small>
+                <a class="btn" href="${raw}" download>Download</a>
+              </div>`;
+          } else {
+            card.innerHTML = `
+              <figure>
+                <img loading="lazy" alt="${f.name}" src="${raw}" />
+              </figure>
+              <div class="meta">
+                <small title="${f.name}">${f.name.replace(/\.[^.]+$/,'')}</small>
+                <a class="btn" href="${raw}" download>Download</a>
+              </div>`;
+          }
+          gallery.appendChild(card);
+        }
+      }catch(err){
+        console.error(err);
+        statusEl.textContent = 'Failed to load photos.';
+        help.style.display = 'block';
+      }
+    }
+
+    load();
   </script>
 </body>
 </html>
